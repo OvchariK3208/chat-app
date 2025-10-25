@@ -1,0 +1,28 @@
+@use '@/styles/mixins' as *;
+@use '@/styles/breakpoints' as *;
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100dvh;
+	margin: 40px 0;
+
+	@include respond(sm) {
+		padding: 0 10px;
+	}
+
+	.form {
+		@include formDefault;
+	}
+}
+
+.float-toggle {
+	position: relative;
+
+	& button {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+}

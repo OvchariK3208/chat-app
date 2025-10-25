@@ -1,0 +1,50 @@
+@use './breakpoints' as *;
+
+html {
+	font-size: 16px;
+}
+
+@include respond(lg) {
+	html {
+		font-size: 15px;
+	}
+}
+
+@include respond(md) {
+	html {
+		font-size: 14px;
+	}
+}
+
+@include respond(sm) {
+	html {
+		font-size: 13px;
+	}
+}
+
+.h1 {
+	font-size: 2rem;
+	font-weight: 700;
+
+	@include respond(sm) {
+		font-size: 1.5rem;
+	}
+}
+
+.h2 {
+	font-size: 1.2rem;
+	font-weight: 600;
+
+	@include respond(sm) {
+		font-size: 1rem;
+	}
+}
+
+.p {
+	font-size: 0.8rem;
+	font-weight: 600;
+
+	@include respond(sm) {
+		font-size: 0.7rem;
+	}
+}

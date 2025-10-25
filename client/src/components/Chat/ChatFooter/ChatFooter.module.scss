@@ -1,0 +1,55 @@
+@use '@/styles/mixins' as *;
+@use '@/styles/breakpoints' as *;
+
+.form {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 4px;
+	max-width: 100%;
+	height: 42px;
+	padding: 8px;
+	border: var(--border);
+	border-radius: 0 0 var(--radius) 0;
+
+	@include respond(md) {
+		border-radius: 0 0 var(--radius) var(--radius);
+	}
+
+	&__input {
+		flex: 1; // 👈 растягиваем на всё доступное пространство
+		min-width: 0; // 👈 важно, чтобы не вылезал за пределы flex-контейнера
+		padding: 8px 12px;
+		border: none;
+		border-radius: 12px;
+		outline: none;
+		transition: border-color 0.3s;
+		font-size: 14px;
+		background: transparent;
+		color: var(--color-primary);
+
+		&:focus {
+			border-color: var(--color-input-focus);
+		}
+
+		&::placeholder {
+			color: var(--color-input-placeholder);
+		}
+	}
+
+	&__button {
+		all: unset;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		cursor: pointer;
+
+		& svg {
+			width: 24px;
+			height: 24px;
+			color: var(--icon-button-color);
+		}
+	}
+}

@@ -1,0 +1,72 @@
+.themeToggle {
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 8px;
+	line-height: 0;
+	border-radius: 50%;
+	transition:
+		background 0.25s ease,
+		transform 0.2s ease;
+	color: var(--color-foreground);
+
+	&:hover {
+		background: var(--color-icon-bg);
+	}
+
+	&:active {
+		transform: rotate(12deg);
+	}
+
+	&__icon {
+		display: block;
+	}
+
+	/* SUN */
+	&__sunGroup {
+		opacity: 1;
+		transition: opacity 0.25s ease;
+	}
+
+	&__sun {
+		transition: fill 0.25s ease;
+	}
+
+	&__sunBeams {
+		transition: opacity 0.25s ease;
+	}
+
+	/* MOON */
+	&__moonGroup {
+		opacity: 0;
+		transition: opacity 0.25s ease;
+	}
+
+	&__moon {
+		transition: fill 0.25s ease;
+	}
+
+	:global([data-theme='dark']) & {
+		&__sunGroup {
+			opacity: 0;
+		}
+
+		&__sunBeams {
+			opacity: 0;
+		}
+
+		&__moonGroup {
+			opacity: 1;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+
+		&__sunGroup,
+		&__moonGroup,
+		&__sunBeams {
+			transition: none;
+		}
+	}
+}

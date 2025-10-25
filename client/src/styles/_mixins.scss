@@ -1,0 +1,104 @@
+@use './breakpoints' as *;
+
+@mixin container($max-width: 1280px) {
+	width: 100%;
+	max-width: $max-width;
+	margin: 0 auto;
+	padding: 0 1rem;
+	box-sizing: border-box;
+}
+
+@mixin formDefault {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+	background: var(--card);
+	border: var(--border);
+	border-radius: var(--radius);
+	padding: 2rem 1.5rem;
+	box-shadow: var(--box-shadow);
+	max-width: 33.75rem;
+	width: 100%;
+
+	@include respond(sm) {
+		padding: 2rem 0.75rem;
+	}
+
+	&__title {
+		font-size: 2rem;
+		font-weight: 700;
+
+		@include respond(sm) {
+			font-size: 1.5rem;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		text-transform: capitalize;
+
+		@include respond(sm) {
+			flex-direction: column;
+		}
+
+		&-text {
+			color: var(--secondary);
+		}
+
+		&-link {
+			color: var(--accent);
+		}
+
+		@include respond(sm) {
+			font-size: 0.875rem;
+		}
+	}
+}
+
+@mixin icon-button {
+	all: unset;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+
+	@include respond(lg) {
+		width: 2.75rem;
+		height: 2.75rem;
+	}
+
+	@include respond(sm) {
+		width: 2rem;
+		height: 2rem;
+		//background: red;
+	}
+
+	&:hover {
+		background: var(--icon-button-background-hover);
+	}
+
+	& svg {
+		color: var(--icon-button-color);
+
+		@include respond(lg) {
+			width: 1.75rem;
+			height: 1.75rem;
+		}
+
+		@include respond(sm) {
+			width: 1.3rem;
+			height: 1.3rem;
+		}
+
+		&:hover {
+			color: var(--accent);
+		}
+	}
+}

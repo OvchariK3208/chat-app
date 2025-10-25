@@ -1,0 +1,69 @@
+@use '@/styles/mixins' as *;
+@use '@/styles/breakpoints' as *;
+
+.icon-button {
+	@include icon-button;
+}
+
+.overlay {
+	position: fixed;
+	inset: 0;
+	background: var(--overlay);
+	backdrop-filter: var(--overlay-blur);
+	-webkit-backdrop-filter: var(--overlay-blur);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.alert-box {
+	display: flex;
+	justify-content: start;
+	gap: 16px;
+	border: 1px solid var(--overlay-border);
+	border-radius: 8px;
+	padding: 16px;
+	width: 40%;
+	color: var(--overlay-text);
+	background: var(--overlay-background);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+	@include respond(md) {
+		width: 60%;
+	}
+
+	@include respond(sm) {
+		width: 80%;
+	}
+
+	&__hint {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		font-size: 14px;
+		line-height: 140%;
+	}
+
+	&__heading {
+		font-size: 16px;
+		font-weight: 600;
+		text-transform: capitalize;
+	}
+
+	&__label {
+		font-weight: 400;
+	}
+
+	&__link {
+		align-self: flex-start;
+		display: inline-block;
+		cursor: pointer;
+		border-bottom: 1px solid var(--overlay-border);
+		color: inherit;
+		text-decoration: none;
+
+		&:hover {
+			border-bottom: 2px solid var(--overlay-link);
+		}
+	}
+}

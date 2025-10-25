@@ -1,0 +1,81 @@
+@use '@/styles/mixins' as *;
+@use '@/styles/breakpoints' as *;
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px;
+	border: var(--border);
+	border-radius: 0 var(--radius) 0 0;
+	height: 44px;
+
+	@include respond(md) {
+		border-radius: var(--radius) var(--radius) 0 0;
+	}
+
+	@include respond(sm) {
+		padding: 4px;
+	}
+
+	&__user {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+
+		@include respond(sm) {
+			gap: 4px;
+		}
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	&__nickname {
+		color: var(--foreground);
+		white-space: nowrap;
+	}
+
+	&__status {
+		text-transform: capitalize;
+
+		&--online {
+			color: var(--online);
+		}
+
+		&--offline {
+			color: var(--secondary);
+		}
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+
+		@include respond(lg) {
+			gap: 14px;
+		}
+
+		@include respond(sm) {
+			gap: 4px;
+		}
+	}
+
+	&__button {
+		background: none;
+		border: none;
+		cursor: pointer;
+		font-size: 18px;
+
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+}
+
+.close {
+	@include icon-button;
+}

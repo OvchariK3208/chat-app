@@ -1,0 +1,20 @@
+.container {
+	@include container(1200px);
+
+	@media (max-width: 1280px) {
+		@include container(1024px);
+	}
+
+	@media (max-width: 1024px) {
+		@include container(768px);
+	}
+
+	@media (max-width: 768px) {
+		@include container(640px);
+	}
+
+	@media (max-width: 640px) {
+		@include container(100%);
+		padding: 0 5px;
+	}
+}

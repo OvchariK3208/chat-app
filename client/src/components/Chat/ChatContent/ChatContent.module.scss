@@ -1,0 +1,159 @@
+@use '@/styles/mixins' as *;
+@use '@/styles/breakpoints' as *;
+
+.chat {
+	flex: 1;
+	overflow-y: auto;
+	//padding: 16px 20px 8px;)
+
+	//padding-top: 44px;
+	display: flex;
+	//flex-direction: column;
+	justify-content: flex-end;
+	border-left: var(--border);
+	border-right: var(--border);
+	background: var(--background);
+
+	@include respond(lg) {
+		//width: 40%;
+	}
+
+	@include respond(md) {
+		display: none;
+
+		&--mobile {
+			display: flex;
+			max-width: 100%;
+		}
+	}
+
+	&__messages {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		width: 100%;
+		padding: 8px;
+	}
+
+	&__date_divider {
+		align-self: center;
+		padding: 4px 12px;
+		border-radius: 12px;
+		font-size: 12px;
+		font-weight: 500;
+		color: var(--secondary);
+		margin: 8px 0;
+	}
+
+	&__message {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+
+		&--author {
+			align-items: flex-end;
+
+			.chat__bubble {
+				background: var(
+					--message-background-author
+				); //var(--message-background);
+				color: var(--foreground);
+				border-radius: 16px 16px 0 16px;
+			}
+
+			.chat__meta {
+				justify-content: flex-end;
+			}
+
+			.chat__time {
+				color: var(--secondary);
+			}
+		}
+	}
+
+	&__bubble {
+		max-width: 70%;
+		padding: 10px 14px;
+		border-radius: 16px 16px 16px 0;
+		background: var(--message-background);
+		font-size: 14px;
+		line-height: 1.4;
+		word-break: break-word;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	&__meta {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 4px;
+		margin-top: 2px;
+	}
+
+	&__time {
+		font-size: 10px;
+		color: var(--secondary);
+	}
+
+	&__status {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--secondary);
+
+		&--read {
+			color: var(--online);
+		}
+
+		svg {
+			width: 16px;
+			height: 16px;
+		}
+	}
+
+	&__scroll_anchor {
+		//display: block;
+		height: 1px;
+		padding-top: 1px;
+	}
+
+	&__default {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		//background: ;
+		border: var(--border);
+		border-radius: 0 var(--radius) var(--radius) 0;
+
+		@include respond(md) {
+			display: none;
+		}
+
+		&_inner {
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+			gap: 8px;
+			padding: 20px;
+			color: var(--foreground);
+
+			h3 {
+				font-size: 18px;
+				font-weight: 600;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 8px;
+			}
+
+			p {
+				font-size: 14px;
+				color: var(--secondary);
+			}
+		}
+	}
+}
