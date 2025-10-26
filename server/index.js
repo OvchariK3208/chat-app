@@ -33,6 +33,10 @@ app.use("/api/chats", chatRoute);
 app.use("/api/messages", messageRoute);
 app.use(errorMiddleware);
 
+app.get("/", (req, res) => {
+	res.send(`Welcome ${PORT}`)
+})
+
 const server = createServer(app);
 const io = new Server(server, {
 	cors: {

@@ -54,15 +54,14 @@ const logout = async (req, res, next) => {
 const refresh = async (req, res, next) => {
 	try {
 		const { refreshToken } = req.cookies;
-		console.log(refreshToken)
 		
 		const userData = await userService.refresh(refreshToken);
-		console.log("refreshToken", 1, userData)
+		
 		res.cookie('refreshToken', userData.refreshToken, {
 			maxAge: 30 * 24 * 60 * 60 * 1000,
 			httpOnly: true,
 		});
-		console.log("refreshToken", 2)
+		
 		return res.status(200).json(userData);
 	} catch (e) {
 		next(e);
@@ -72,7 +71,7 @@ const refresh = async (req, res, next) => {
 const getAllUsers = async (req, res, next) => {
 	try {
 		const users = await userService.getAllUsers();
-		console.log(users)
+		
 		return res.status(200).json(users);
 	} catch (e) {
 		next(e);
