@@ -5,7 +5,7 @@ import type { IUser } from '@/models/IUser'
 import type { AuthResponse } from '@/models/response/AuthResponse'
 import AuthService from '@/services/AuthService'
 
-interface AuthContextProps {
+export interface AuthContextProps {
 	user: IUser | null
 	isAuth: boolean
 	isLoading: boolean

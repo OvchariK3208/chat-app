@@ -3,7 +3,7 @@ import React, { createContext, useState, useEffect } from 'react'
 
 export type Theme = 'light' | 'dark'
 
-interface ThemeContextProps {
+export interface ThemeContextProps {
 	theme: Theme
 	toggleTheme: () => void
 }

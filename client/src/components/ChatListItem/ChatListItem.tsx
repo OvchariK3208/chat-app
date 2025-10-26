@@ -17,6 +17,8 @@ interface ChatUserProps {
 const ChatListItem: React.FC<ChatUserProps> = ({ chat, user }) => {
 	const { recepientUser } = useFeatch(user, chat)
 	const { onlineUsers, typingUsers } = useChat()
+	
+	console.log("onlineUsers", onlineUsers)
 
 	const isOnline = onlineUsers.some(
 		(u: { userId: string }) => u.userId === recepientUser?._id

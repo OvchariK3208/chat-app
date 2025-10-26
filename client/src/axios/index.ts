@@ -8,6 +8,7 @@ import type { AuthResponse } from '../models/response/AuthResponse'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL as string
 export const API_URL = `${BASE_URL}/api/`
+console.log(API_URL)
 
 const api: AxiosInstance = axios.create({
 	baseURL: API_URL,

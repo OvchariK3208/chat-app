@@ -2,6 +2,7 @@ import cn from 'classnames'
 import { X, Video, Info } from 'lucide-react'
 import React from 'react'
 import useChat from '@/hooks/useChat'
+import type { IUser } from '@/models/IUser'
 import Avatar from '@/shared/ui/Avatar'
 import CustomAlert from '@/shared/ui/CustomAlert'
 import styles from './ChatHeader.module.scss'
@@ -13,9 +14,12 @@ const ChatHeader: React.FC = () => {
 		return <></>
 	}
 
-	const isOnline = onlineUsers.some(
-		(u) => String(u?.userId) === String(recipientUser?._id)
-	)
+
+const isOnline = onlineUsers.some(
+	(u) => String(u.userId) === String(recipientUser?._id)
+)
+
+console.log(onlineUsers)
 
 	return (
 		<div className={cn(styles.header)}>

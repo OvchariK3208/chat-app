@@ -3,7 +3,7 @@ import axios from 'axios'
 import type { IUser } from '@/models/IUser'
 import UserService from '@/services/UserService'
 
-interface UserContextProps {
+export interface UserContextProps {
 	users: IUser[]
 	isLoading: boolean
 	getAllUsers: () => Promise<void>

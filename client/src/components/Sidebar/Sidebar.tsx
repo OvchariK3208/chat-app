@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import ChatListItem from '@/components/ChatListItem'
 import ThemeToggle from '@/components/ThemeToggle'
+import type { IChat } from '@/models/IChat'
 import useAuth from '@/hooks/useAuth'
 import useChat from '@/hooks/useChat'
 import styles from './Sidebar.module.scss'
@@ -34,8 +35,8 @@ const Sidebar: React.FC = () => {
 			</div>
 
 			<div className={styles.sidebar__list}>
-				{userChats?.length ? (
-					userChats.map((chat) => (
+				{user && userChats?.length ? (
+					userChats.map((chat: IChat) => (
 						<div
 							key={chat._id}
 							onClick={() => updateCurrentChat(chat)}

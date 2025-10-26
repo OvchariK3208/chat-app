@@ -3,12 +3,13 @@ import axios from 'axios'
 import type { IChat } from '@/models/IChat'
 import type { IMessage } from '@/models/IMessage'
 import type { IUser } from '@/models/IUser'
+import type { IOnlineUser } from '@/models/IOnlineUser'
 import ChatService from '@/services/ChatService'
 import MessageService from '@/services/MessageService'
 import UserService from '@/services/UserService'
 import { socket } from '@/socket'
 
-interface ChatContextProps {
+export interface ChatContextProps {
 	userChats: IChat[] | null
 	isLoading: boolean
 	userChatsError: string | null
@@ -22,7 +23,7 @@ interface ChatContextProps {
 		chatId: string,
 		setTextMessage: (value: string) => void
 	) => Promise<void>
-	onlineUsers: IUser[]
+	onlineUsers: IOnlineUser[]
 	recipientUser: IUser | null
 	resetRecipientUser: () => void
 	typingUsers: string[]
@@ -49,7 +50,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
 	const [messages, setMessages] = useState<IMessage[] | null>(null)
 	const [newMessage, setNewMessage] = useState<IMessage | null>(null)
 
-	const [onlineUsers, setOnlineUsers] = useState<IUser[]>([])
+	const [onlineUsers, setOnlineUsers] = useState<IOnlineUser[]>([])
 	const [recipientUser, setRecipientUser] = useState<IUser | null>(null)
 	const [typingUsers, setTypingUsers] = useState<string[]>([])
 

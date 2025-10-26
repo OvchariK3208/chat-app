@@ -1,4 +1,9 @@
+import type { IMessage } from './IMessage'
+
 export interface IChat {
-	members: string[]
 	_id: string
+	members: string[]
+	createdAt?: string
+	updatedAt?: string
+	lastMessage?: IMessage
 }
