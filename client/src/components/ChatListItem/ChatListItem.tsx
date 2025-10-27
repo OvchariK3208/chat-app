@@ -16,15 +16,9 @@ interface ChatUserProps {
 
 const ChatListItem: React.FC<ChatUserProps> = ({ chat, user }) => {
 	const { recepientUser } = useFeatch(user, chat)
-	const { onlineUsers, typingUsers } = useChat()
-	
-	console.log("onlineUsers", onlineUsers)
+	const { onlineUsers } = useChat()
 
-	const isOnline = onlineUsers.some(
-		(u: { userId: string }) => u.userId === recepientUser?._id
-	)
-
-	const isTyping = !!recepientUser && typingUsers.includes(recepientUser._id)
+	const isOnline = onlineUsers.some((u) => u.userId === recepientUser?._id)
 
 	const lastMessage = chat?.lastMessage
 	const messageTime = lastMessage?.createdAt
@@ -32,16 +26,6 @@ const ChatListItem: React.FC<ChatUserProps> = ({ chat, user }) => {
 		: ''
 
 	const renderStatus = (): JSX.Element => {
-		if (isTyping) {
-			return (
-				<span className={styles['chat-item__typing']}>
-					<span className={styles.dot}></span>
-					<span className={styles.dot}></span>
-					<span className={styles.dot}></span>
-				</span>
-			)
-		}
-
 		if (lastMessage) {
 			return (
 				<span className={styles['chat-item__last-message']}>
@@ -49,7 +33,6 @@ const ChatListItem: React.FC<ChatUserProps> = ({ chat, user }) => {
 				</span>
 			)
 		}
-
 		return <span className={styles['chat-item__empty']}>No messages yet</span>
 	}
 

@@ -26,7 +26,6 @@ export interface ChatContextProps {
 	onlineUsers: IOnlineUser[]
 	recipientUser: IUser | null
 	resetRecipientUser: () => void
-	typingUsers: string[]
 }
 
 interface ChatProviderProps {
@@ -45,14 +44,11 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
 	const [userChats, setUserChats] = useState<IChat[] | null>(null)
 	const [isLoading, setIsLoading] = useState(false)
 	const [userChatsError, setUserChatsError] = useState<string | null>(null)
-
 	const [currentChat, setCurrentChat] = useState<IChat | null>(null)
 	const [messages, setMessages] = useState<IMessage[] | null>(null)
 	const [newMessage, setNewMessage] = useState<IMessage | null>(null)
-
 	const [onlineUsers, setOnlineUsers] = useState<IOnlineUser[]>([])
 	const [recipientUser, setRecipientUser] = useState<IUser | null>(null)
-	const [typingUsers, setTypingUsers] = useState<string[]>([])
 
 	const updateCurrentChat = useCallback((chat: IChat | null): void => {
 		setCurrentChat(chat)
@@ -86,7 +82,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
 			setMessages(response.data)
 		} catch (e: unknown) {
 			if (axios.isAxiosError(e)) {
-				// можно добавить уведомление
+				console.error(e.response?.data?.message ?? 'Failed to get messages')
 			}
 		} finally {
 			setIsLoading(false)
@@ -136,7 +132,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
 		getMessages(currentChat._id)
 		socket.emit('markAsRead', { chatId: currentChat._id, userId: user._id })
 
-		socket.on('messagesRead', ({ chatId }: { chatId: string }) => {
+		const onMessagesRead = ({ chatId }: { chatId: string }) => {
 			if (chatId === currentChat._id) {
 				setMessages((prev) =>
 					prev
@@ -146,13 +142,12 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
 						: prev
 				)
 			}
-		})
-		return () => {
-			socket.off('messagesRead')
 		}
+
+		socket.on('messagesRead', onMessagesRead)
+		return () => socket.off('messagesRead', onMessagesRead)
 	}, [currentChat, user])
 
-	// ⬇️ вернули загрузку собеседника — без этого header/footer могли не рендериться
 	useEffect(() => {
 		const fetchRecipient = async (): Promise<void> => {
 			if (!currentChat || !user) return setRecipientUser(null)
@@ -170,6 +165,14 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
 		fetchRecipient()
 	}, [currentChat, user])
 
+	useEffect(() => {
+		if (!user?._id) return
+		socket.emit('addNewUser', user._id)
+		const onOnlineUsers = (users: IOnlineUser[]) => setOnlineUsers(users)
+		socket.on('getOnlineUsers', onOnlineUsers)
+		return () => socket.off('getOnlineUsers', onOnlineUsers)
+	}, [user?._id])
+
 	return (
 		<ChatContext.Provider
 			value={{
@@ -184,7 +187,6 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
 				onlineUsers,
 				recipientUser,
 				resetRecipientUser,
-				typingUsers,
 			}}
 		>
 			{children}

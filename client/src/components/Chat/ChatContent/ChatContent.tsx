@@ -48,49 +48,49 @@ const ChatContent: React.FC = () => {
 		>
 			<div className={styles.chat__messages}>
 				{messages?.map((msg: IMessage, index: number) => {
-	const prevMsg = messages[index - 1]
-	const showDateDivider =
-		!prevMsg ||
-		!isSameDay(new Date(msg.createdAt), new Date(prevMsg.createdAt))
+					const prevMsg = messages[index - 1]
+					const showDateDivider =
+						!prevMsg ||
+						!isSameDay(new Date(msg.createdAt), new Date(prevMsg.createdAt))
 
-	const isMyMessage = msg.senderId === user?._id
-	const messageTime = format(new Date(msg.createdAt), 'HH:mm', {
-		locale: enUS,
-	})
+					const isMyMessage = msg.senderId === user?._id
+					const messageTime = format(new Date(msg.createdAt), 'HH:mm', {
+						locale: enUS,
+					})
 
-	return (
-		<React.Fragment key={msg._id}>
-			{showDateDivider && (
-				<div className={styles.chat__date_divider}>
-					{renderDate(new Date(msg.createdAt))}
-				</div>
-			)}
+					return (
+						<React.Fragment key={msg._id}>
+							{showDateDivider && (
+								<div className={styles.chat__date_divider}>
+									{renderDate(new Date(msg.createdAt))}
+								</div>
+							)}
 
-			<div
-				className={cn(styles.chat__message, {
-					[styles['chat__message--author']]: isMyMessage,
-				})}
-			>
-				<div className={styles.chat__bubble}>
-					<p className={styles.chat__text}>{msg.content}</p>
-
-					<div className={styles.chat__meta}>
-						<span className={styles.chat__time}>{messageTime}</span>
-						{isMyMessage && (
-							<span
-								className={cn(styles.chat__status, {
-									[styles['chat__status--read']]: msg.isRead,
+							<div
+								className={cn(styles.chat__message, {
+									[styles['chat__message--author']]: isMyMessage,
 								})}
 							>
-								{msg.isRead ? <CheckCheck /> : <Check />}
-							</span>
-						)}
-					</div>
-				</div>
-			</div>
-		</React.Fragment>
-	)
-})}
+								<div className={styles.chat__bubble}>
+									<p className={styles.chat__text}>{msg.content}</p>
+
+									<div className={styles.chat__meta}>
+										<span className={styles.chat__time}>{messageTime}</span>
+										{isMyMessage && (
+											<span
+												className={cn(styles.chat__status, {
+													[styles['chat__status--read']]: msg.isRead,
+												})}
+											>
+												{msg.isRead ? <CheckCheck /> : <Check />}
+											</span>
+										)}
+									</div>
+								</div>
+							</div>
+						</React.Fragment>
+					)
+				})}
 
 				<div
 					ref={scroll}

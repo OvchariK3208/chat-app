@@ -14,12 +14,11 @@ const ChatHeader: React.FC = () => {
 		return <></>
 	}
 
+	const isOnline = onlineUsers.some(
+		(u) => String(u.userId) === String(recipientUser?._id)
+	)
 
-const isOnline = onlineUsers.some(
-	(u) => String(u.userId) === String(recipientUser?._id)
-)
-
-console.log(onlineUsers)
+	console.log(onlineUsers)
 
 	return (
 		<div className={cn(styles.header)}>

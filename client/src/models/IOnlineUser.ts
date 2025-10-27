@@ -1,4 +1,4 @@
 export interface IOnlineUser {
-  userId: string
-  socketId: string
+	userId: string
+	socketId: string
 }
