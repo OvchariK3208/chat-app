@@ -14,17 +14,21 @@ The application implements real-time private communication between users based o
 
 ### Demo
 
-**[https://chat-app-3208.vercel.app](https://chat-app-3208.vercel.app)**
+🔗 **[https://chat-app-3208.vercel.app](https://chat-app-3208.vercel.app)**
 
 ### Test Users
 
-You can test the app by opening multiple tabs in different browsers or in normal and private/incognito mode:
+**Recommended:** Use Ryan Carter for the best experience with existing chat history.
 
 ```
 nickname: Ryan Carter
 email:    ryan.carter@gmail.com
 password: password33
 ```
+
+---
+
+**Additional users** for testing real-time messaging (open multiple tabs in different browsers or normal/incognito mode):
 
 ```
 nickname: Ethan Brooks
@@ -38,7 +42,7 @@ email:    michael.turner@gmail.com
 password: password33
 ```
 
-You can also create a new user. However, chats are not yet activated for new accounts, so the message history will be empty.
+**Note:** You can create a new user, but chats are not yet activated for new accounts, so message history will be empty.
 
 ---
 
