@@ -1,6 +1,6 @@
 # Real-Time Private Chat App
 
-![Desktop Chat Active](https://github.com/OvchariK3208/chat-app/blob/48104fa959ef785be4a516bf8a7705e0da10bdb6/demo_images/desktop_chat_active.webp)
+![Desktop Chat Active](https://github.com/OvchariK3208/chat-app/blob/0afdbed42c188e92cbda88f38deb3507021efaae/demo_images/desktop_chat_active.webp)
 
 ![Mobile Login And Registration](https://github.com/OvchariK3208/chat-app/blob/48104fa959ef785be4a516bf8a7705e0da10bdb6/demo_images/mobile_login_and_registration.webp)
 
