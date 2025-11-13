@@ -18,7 +18,7 @@ The application implements real-time private communication between users based o
 
 ### Demo
 
-🔗 **[https://chat-app-3208.vercel.app](https://chat-app-3208.vercel.app)**
+**[https://chat-app-3208.vercel.app](https://chat-app-3208.vercel.app)**
 
 ### Test Users
 
